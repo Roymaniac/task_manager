@@ -1,14 +1,23 @@
 const express = require("express");
-const db = require("./db/config");
+const db = require("./utils/connect");
 const cors = require("cors");
-const env = require("dotenv").config({ debug: process.env.DEBUG });
+const { PORT } = require("./utils/config");
+
+const taskRoutes = require("./modules/task/task.route");
 
 const app = express();
-const PORT = process.env.PORT;
-
-db();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
+app.use("/api/tasks", taskRoutes);
+
+// Move the database connection inside the server listen callback
+db.connectToDatabase().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
+  });
+});
+
+module.exports = app;
