@@ -7,9 +7,9 @@ This project implements a simple task management API using Express.js and MongoD
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/task-management-api.git
+git clone https://github.com/your-username/task_manager.git
 
-cd task-management-api
+cd task_manager
 ```
 
 Install dependencies:
