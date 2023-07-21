@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { uri } from "../config";
 
 const CreateTask = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/tasks", formData);
+      await axios.post(`${uri}/api/tasks`, formData);
       navigate("/");
     } catch (error) {
       console.error("Error creating task:", error);

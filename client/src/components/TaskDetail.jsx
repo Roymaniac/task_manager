@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
+import { uri } from "../config";
 
 const TaskDetail = () => {
   const { id } = useParams();
@@ -14,9 +15,7 @@ const TaskDetail = () => {
     // Fetch task details from the API
     const fetchTaskDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/tasks/${id}`
-        );
+        const response = await axios.get(`${uri}/api/tasks/${id}`);
         setTask(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -30,7 +29,7 @@ const TaskDetail = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`${uri}/api/tasks/${id}`);
       navigate("/");
     } catch (error) {
       console.error("Error deleting task:", error);

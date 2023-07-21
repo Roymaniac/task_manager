@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { uri } from "../config";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -11,7 +12,7 @@ const TaskList = () => {
     // Fetch tasks from the API endpoint and update the state
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/tasks");
+        const response = await axios.get(`${uri}/api/tasks`);
         setTasks(response.data.data);
         setLoading(false);
       } catch (error) {

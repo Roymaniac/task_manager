@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { uri } from "../config";
 
 const UpdateTask = () => {
   const { id } = useParams();
@@ -12,9 +13,7 @@ const UpdateTask = () => {
     // Fetch task details to pre-populate the current status
     const fetchTaskDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/tasks/${id}`
-        );
+        const response = await axios.get(`${uri}/api/tasks/${id}`);
         setStatus(response.data.data.status);
       } catch (error) {
         console.error("Error fetching task details:", error);
@@ -31,7 +30,7 @@ const UpdateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${id}`, { status });
+      await axios.put(`${uri}/api/tasks/${id}`, { status });
       navigate("/");
     } catch (error) {
       console.error("Error updating task status:", error);
