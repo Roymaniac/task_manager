@@ -4,6 +4,7 @@
   "description": "A simple task manager api",
   "main": "index.js",
   "scripts": {
+    "script": "node index.js",
     "server": "nodemon index.js",
     "test": "npm test"
   },

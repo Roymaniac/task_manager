@@ -41,10 +41,10 @@ const TaskList = () => {
         ) : (
           <ul className="divide-y my-3 divide-gray-200">
             {tasks.map((task) => (
-              <li key={task.id} className="relative px-4 py-4 sm:px-6">
+              <li key={task._id} className="relative px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
                   <p className="text-lg text-gray-800 dark:text-white font-semibold">
-                    <Link to={`/tasks/${task.id}`} className="hover:underline">
+                    <Link to={`/tasks/${task._id}`} className="hover:underline">
                       {task.title}
                     </Link>
                   </p>
@@ -67,7 +67,7 @@ const TaskList = () => {
                 </div>
                 <div className="flex items-center mt-4">
                   <Link
-                    to={`/update/${task.id}`}
+                    to={`/update/${task._id}`}
                     className="px-3 py-1 rounded text-white bg-blue-500 hover:bg-blue-600 text-xs font-semibold"
                   >
                     Update

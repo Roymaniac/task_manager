@@ -46,14 +46,14 @@ exports.createTask = async (req, res) => {
 // Update the status of a task
 exports.updateStatus = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { _id } = req.params;
     const { status } = req.body;
 
     if (!status || !["Pending", "In Progress", "Completed"].includes(status)) {
       return res.status(400).json({ message: "Invalid Status" });
     }
 
-    const updatedTask = await taskService.updateStatus(id, status);
+    const updatedTask = await taskService.updateStatus(_id, status);
 
     if (!updatedTask) {
       return res
@@ -70,14 +70,14 @@ exports.updateStatus = async (req, res) => {
 // Delete a task
 exports.deleteTask = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedTask = await taskService.deleteTask(id);
+    const { _id } = req.params;
+    const deletedTask = await taskService.deleteTask(_id);
     if (!deletedTask) {
       return res
         .status(404)
         .json({ success: false, message: "Task not found" });
     }
-    const response = { id: id, message: "Task deleted successfully" };
+    const response = { _id, message: "Task deleted successfully" };
     return res.status(200).json({ success: true, data: response });
   } catch (error) {
     return res.status(500).json({ err: "Something happened" });

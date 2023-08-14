@@ -4,9 +4,10 @@ const {
   connectToDatabase,
   closeDatabaseConnection,
 } = require("../utils/connect");
+const mongoose = require("mongoose");
 
 const sampleTask = {
-  id: 4,
+  _id: new mongoose.Types.ObjectId(),
   title: "Test Task",
   description: "This is a test task.",
   status: "In Progress",
@@ -38,8 +39,8 @@ describe("Task Management API", () => {
   it("should create a new task", async () => {
     const response = await request(app).post("/api/tasks").send(sampleTask);
     expect(response.status).toBe(201);
-    expect(response.body.data).toHaveProperty("id");
-    taskId = response.body.data.id;
+    expect(response.body.data).toHaveProperty("_id");
+    taskId = response.body.data._id;
   });
 
   it("should retrieve a list of tasks", async () => {
@@ -51,15 +52,16 @@ describe("Task Management API", () => {
   it("should retrieve a single task by id", async () => {
     const response = await request(app).get(`/api/tasks/${taskId}`);
     expect(response.status).toBe(200);
-    expect(response.body.data.id).toBe(taskId);
+    expect(response.body.data._id).toBe(taskId);
   });
 
   it("should return 404 for non-existent task", async () => {
-    const response = await request(app).get("/api/tasks/10");
+    const fakeId = new mongoose.Types.ObjectId();
+    const response = await request(app).get(`/api/tasks/${fakeId}`);
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty(
       "message",
-      "Task with id 10 does not exist"
+      `Task with id ${fakeId} does not exist`
     );
   });
 
@@ -90,7 +92,9 @@ describe("Task Management API", () => {
   });
 
   it("should return 404 when deleting a non-existent task", async () => {
-    const response = await request(app).delete("/api/tasks/11");
+    const response = await request(app).delete(
+      "/api/tasks/64b9c31b8fc27a39598"
+    );
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("message", "Task not found");
   });

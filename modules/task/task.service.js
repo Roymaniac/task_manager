@@ -6,7 +6,7 @@ exports.getAllTasks = async () => {
 };
 
 exports.getSingleTask = async (id) => {
-  return await Task.findOne({ id: id });
+  return await Task.findOne({ _id: id });
 };
 
 exports.createTask = async (taskData) => {
@@ -15,10 +15,10 @@ exports.createTask = async (taskData) => {
   return task;
 };
 
-exports.updateStatus = async (id, status) => {
-  return await Task.findOneAndUpdate({ id: id }, { status }, { new: true });
+exports.updateStatus = async (_id, status) => {
+  return await Task.findOneAndUpdate(_id, { status }, { new: true });
 };
 
 exports.deleteTask = async (taskId) => {
-  return await Task.findOneAndDelete({ id: taskId });
+  return await Task.findOneAndDelete({ taskId });
 };
