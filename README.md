@@ -41,7 +41,7 @@ The API server should now be running on `http://localhost:${PORT}` specified in 
 ```json
 [
   {
-    "id": 1,
+    "_id": "ObjectID('64d9c9b75bca06fbab')",
     "title": "Task 1",
     "description": "Description of Task 1",
     "status": "Pending",
@@ -49,7 +49,7 @@ The API server should now be running on `http://localhost:${PORT}` specified in 
     "updatedAt": "2023-07-15T12:34:56.789Z"
   },
   {
-    "id": 2,
+    "_id": "ObjectID('64d9c9b75bca06fdeab')",
     "title": "Task 2",
     "description": "Description of Task 2",
     "status": "Completed",
@@ -70,7 +70,7 @@ The API server should now be running on `http://localhost:${PORT}` specified in 
 
 ```json
 {
-  "id": 1,
+  "_id": "ObjectID('64d9c9b75bca06fbab')",
   "title": "Task 1",
   "description": "Description of Task 1",
   "status": "Pending",
@@ -106,7 +106,7 @@ The API server should now be running on `http://localhost:${PORT}` specified in 
 
 ```json
 {
-  "id": 3,
+  "_id": "ObjectID('64d9c9b75bca06fdsab')",
   "title": "New Task",
   "description": "Description of the new task",
   "status": "Pending",
@@ -141,7 +141,7 @@ The API server should now be running on `http://localhost:${PORT}` specified in 
 
 ```json
 {
-  "id": 3,
+  "_id": "ObjectID('64d9c9b75bca06fbdab",
   "title": "New Task",
   "description": "Description of the new task",
   "status": "In Progress",
